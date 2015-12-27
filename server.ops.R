@@ -1,3 +1,8 @@
+# Calculations that take place on the server-side.
+#
+# The separation of this code is meant to allow for quick & easy client-side
+# testing/debugging of a large portion of the server-side execution.
+
 get.extended.trees = function(predictors, n) {
   ext.trees = trees
 
@@ -63,9 +68,11 @@ process.input.bootstrap = function(seed, train.size, predictors, n) {
   return(MAPEs)
 }
 
-process.input.bootstrap(
-  11, 26,
-  list("girth" = TRUE, "height" = TRUE,
-       "height.girth" = FALSE, "height.girth.sq" = TRUE,
-       "height.girth.sq.n" = TRUE),
-  0.01)
+test = function() {
+  process.input.bootstrap(
+    11, 26,
+    list("girth" = TRUE, "height" = TRUE,
+         "height.girth" = FALSE, "height.girth.sq" = TRUE,
+         "height.girth.sq.n" = TRUE),
+    0.01)
+}
